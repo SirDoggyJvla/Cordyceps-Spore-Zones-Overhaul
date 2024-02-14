@@ -1,0 +1,37 @@
+VERSION = 1,
+
+option SporeZones.DrainageFilter
+{
+    type = boolean,
+    default = true,
+    page = SporeZones,
+    translation = SporeZones_DrainageFilter,
+}
+
+option SporeZones.TimetoDrainFilter
+{
+    type = double,
+    min = 0.25,
+    default = 3,
+    max = 72,
+    page = SporeZones,
+    translation = SporeZones_TimetoDrainFilter,
+}
+
+option SporeZones.DrainageOxyTank
+{
+    type = boolean,
+    default = true,
+    page = SporeZones,
+    translation = SporeZones_DrainageOxyTank,
+}
+
+option SporeZones.TimetoDrainOxyTank
+{
+    type = double,
+    min = 0.25,
+    default = 6,
+    max = 72,
+    page = SporeZones,
+    translation = SporeZones_TimetoDrainOxyTank,
+}

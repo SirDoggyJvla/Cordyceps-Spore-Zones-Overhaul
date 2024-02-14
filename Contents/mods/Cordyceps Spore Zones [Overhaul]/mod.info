@@ -1,0 +1,9 @@
+id=CordycepsSporeZoneSusceptiblePatch
+name=Cordyceps Spore Zone - Overhaul
+description=This mod aims to make Cordyceps Spore Zones from Braven work with Susceptible features by Spyjack by using the gas mask identification and filter and oxygen tank durability.
+poster=poster.png
+authors=SirDoggyJvla
+icon=icon.png
+tags=Build 41
+versionMin=41.0
+require=BB_SporeZones,Susceptible
