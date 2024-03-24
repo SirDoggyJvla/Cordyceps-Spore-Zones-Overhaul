@@ -6,22 +6,6 @@ description=
 description=[h1]What does this mod ?[/h1]
 description=The goal of this mod is to make the two mods [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3006143351]Cordyceps Spore Zones[/url] from Braven and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2795677303]Susceptible[/url] from Spyjack work together. It is partially inspired by [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3035924033]TLOU Enhanced Experience[/url] from Monkey which is broken at the time of writing this. 
 description=
-description=[u][b]Features:[/b][/u]
-description=[olist]
-description=[*]Uses the [b]list of masks and hazmat suits from Susceptible[/b] for more mod compatibilities. (such as respirators from STALKER armor pack or gasmasks from Undead Survivor)
-description=
-description=[*]Only masks with [b]filters[/b] or [b]oxygen tanks[/b] work in the spore zones ! If you have a protection, you are [b]100% safe[/b] from spore zones !
-description=
-description=[*][b]Durability consumption[/b] of filters and oxygen tanks in spore zones.
-description=
-description=[*]Doesn't consume durability outside of spore zones.
-description=
-description=[*]Sandbox options to customize the time to drain the durability !
-description=
-description=[*]Ability to [b]remove the Susceptible trait[/b] from character creation with a secondary mod ! 
-description=
-description=[*]The [b]mask UI[/b] from Susceptible shows you when you are [b]in danger[/b] in a spore zone ! But [b]moodles[/b] can still help you identify your level of danger in a spore zone !
-description=[/olist]
 description=
 description=[table]
 description=[tr]
@@ -111,7 +95,7 @@ description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=29076
 description=[/list]
 description=Don't hesitate to report any mod that doesn't work, I can update the compatibility list.
 description=
-description=[h3]Added by this mod[/h3]
+description=[h3]Added by my mod[/h3]
 description=Those are mods now compatible with Susceptible and thus Cordyceps Spore Zones:
 description=[list]
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3079948242]KATTAJ1 Military Pack[/url]
@@ -126,12 +110,11 @@ description=[b][u]Incompatibilities:[/u][/b]
 description=[list]
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2828079697]Susceptible Trait Extension[/url]: I need to look into it
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3035924033]TLOU Enhanced Experience[/url]: IT IS BROKEN AND NOT UP TO DATE, DON'T USE IT ! My mod readds the features from it in its own way !
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3196616278]Hazardous Zones - Overhaul[/url]: I didn't bother to make them compatible but I will in the future.
 description=[/list]
 description=
+description=[url=https://ko-fi.com/sirdoggyjvla][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/kofi.png[/img][/url]
 description=
-description=[h1]To-do[/h1]
-description=[list]
-description=[*]Check the Susceptible Trait Extension incompatibility
-description=[/list]
+description=[url=https://discord.com/invite/SReMnbV4V7][img]https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/main/PZmodCommBanner2.png[/img][/url]
 tags=Build 41;Balance;Clothing/Armor;Hardmode;Items;Misc;Realistic
 visibility=public
