@@ -51,6 +51,9 @@ SusceptibleMaskItems = {
 	SEVAHelmMonolith =                                    { durability=600, repairType=OXYGEN },
 	SEVAHelmMonolithGreen =                               { durability=600, repairType=OXYGEN },
 	PowerArmorHelmet =                           	      { durability=600, repairType=OXYGEN },
+	Antibelok =                            	    		  { durability=600, repairType=OXYGEN },
+	Antibelok_ON =                            	    		  { durability=600, repairType=OXYGEN },
+
 
 --- Gas masks ---
 	Hat_GasMask =                                         { durability=400, repairType=FILTER },

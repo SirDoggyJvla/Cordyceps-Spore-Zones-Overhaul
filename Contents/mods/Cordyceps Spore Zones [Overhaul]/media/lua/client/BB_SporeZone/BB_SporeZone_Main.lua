@@ -35,17 +35,14 @@ local function maskUI(player,threatLevel,gasMask)
 
 	-- retrieve mask item type and info
     local item, mask = SusceptibleMod.getEquippedMaskItemAndData(player)
-	
+
     if not SusceptibleMod.uiByPlayer[player] then
         SusceptibleMod.createMaskUi(player);
     end
-	
+
 	-- makes sure mask item is not broken
     local isBroken = not item or SusUtil.isBroken(item);
 
-	
-	
-    
 	if gasMask and not isBroken then
         -- set mask image
         SusceptibleMod.uiByPlayer[player]:updateMaskImage(item, mask, threatLevel, isBroken)
