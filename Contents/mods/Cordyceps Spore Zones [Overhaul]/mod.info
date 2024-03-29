@@ -6,4 +6,4 @@ authors=SirDoggyJvla
 icon=icon.png
 tags=Build 41
 versionMin=41.0
-require=BB_SporeZones,Susceptible
+require=BB_SporeZones,Susceptible,Susceptible_Overhaul

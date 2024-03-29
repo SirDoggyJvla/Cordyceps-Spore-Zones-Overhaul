@@ -3,7 +3,7 @@ id=3128144245
 title=Cordyceps Spore Zones - Overhaul
 description=[video mp4=https://i.imgur.com/dAvvzEL.mp4][/video]
 description=
-description=[h1]What does this mod ?[/h1]
+description=[h1]What does this mod do ?[/h1]
 description=The goal of this mod is to make the two mods [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3006143351]Cordyceps Spore Zones[/url] from Braven and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2795677303]Susceptible[/url] from Spyjack work together. It is partially inspired by [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3035924033]TLOU Enhanced Experience[/url] from Monkey which is broken at the time of writing this. 
 description=
 description=
@@ -99,6 +99,7 @@ description=[h3]Added by my mod[/h3]
 description=Those are mods now compatible with Susceptible and thus Cordyceps Spore Zones:
 description=[list]
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3079948242]KATTAJ1 Military Pack[/url]
+description=[*]Updated [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2460154811]Brita's Armour Pack[/url] (Antibelok)
 description=[/list]
 description=
 description=[h1]Remarks[/h1]
@@ -110,11 +111,11 @@ description=[b][u]Incompatibilities:[/u][/b]
 description=[list]
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2828079697]Susceptible Trait Extension[/url]: I need to look into it
 description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3035924033]TLOU Enhanced Experience[/url]: IT IS BROKEN AND NOT UP TO DATE, DON'T USE IT ! My mod readds the features from it in its own way !
-description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3196616278]Hazardous Zones - Overhaul[/url]: I didn't bother to make them compatible but I will in the future.
 description=[/list]
 description=
 description=[url=https://ko-fi.com/sirdoggyjvla][img]https://raw.githubusercontent.com/ChuckTheSheep/chuckImages/main/kofi.png[/img][/url]
 description=
 description=[url=https://discord.com/invite/SReMnbV4V7][img]https://raw.githubusercontent.com/Chuckleberry-Finn/chuckImages/main/PZmodCommBanner2.png[/img][/url]
+description=
 tags=Build 41;Balance;Clothing/Armor;Hardmode;Items;Misc;Realistic
 visibility=public

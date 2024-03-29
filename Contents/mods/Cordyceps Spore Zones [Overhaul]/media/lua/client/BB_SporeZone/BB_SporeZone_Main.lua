@@ -5,80 +5,28 @@
 -- ██   ██ ██   ██ ██   ██  ██  ██  ██      ██  ██ ██ 
 -- ██████  ██   ██ ██   ██   ████   ███████ ██   ████
 -- **************************************************
-require "Susceptible/SusceptibleTrait"
-local SusUtil = require "Susceptible/SusceptibleUtil"
+-- from SirDoggyJvla: import module
+local Susceptible_Overhaul = require "Susceptible_Overhaul_module"
 
 local climateManager = nil
 local currZoneChance = 0
 local INFECTION_ROLLS_PER_SECOND = 10 -- This number should evenly divide 60. Not a hard requirement, but nicer.
-
-local function isWearingGasMask()
-	-- from SirDoggyJvla: almost everything here was modified to adapt to Susceptible mask check
-	local item, mask = SusceptibleMod.getEquippedMaskItemAndData(getPlayer());
-    if not mask or SusUtil.isBroken(item) then
-        return false
-    end
-	
-	-- checks if mask with filter/oxygen is on, else return false for no mask
-	if mask.repairType == SusceptibleRepairTypes.OXYGEN or mask.repairType == SusceptibleRepairTypes.FILTER then
-		return true
-	end
-	
-	return false
-end
-
--- from SirDoggyJvla: creates the mask UI and updates the durability
-local function maskUI(player,threatLevel,gasMask)
-    if player:isDead() then
-        return;
-    end
-
-	-- retrieve mask item type and info
-    local item, mask = SusceptibleMod.getEquippedMaskItemAndData(player)
-
-    if not SusceptibleMod.uiByPlayer[player] then
-        SusceptibleMod.createMaskUi(player);
-    end
-
-	-- makes sure mask item is not broken
-    local isBroken = not item or SusUtil.isBroken(item);
-
-	if gasMask and not isBroken then
-        -- set mask image
-        SusceptibleMod.uiByPlayer[player]:updateMaskImage(item, mask, threatLevel, isBroken)
-
-		-- get item data, notably durabilityMax
-		local data = SusUtil.getItemModData(item);
-				
-		--local durability = SusUtil.getNormalizedDurability(item)
-		local durability = data.durability / data.durabilityMax
-		
-		SusceptibleMod.uiByPlayer[player]:updateMaskInfo(true, durability, 0)
-	else
-        item = nil
-        -- set mask image
-        SusceptibleMod.uiByPlayer[player]:updateMaskImage(item, mask, threatLevel, isBroken)
-
-		SusceptibleMod.uiByPlayer[player]:updateMaskInfo(false, 0, 0)
-	end
-
-end
 
 local function everyMinute()
     if not SandboxVars.SporeZones then return end
     local playerObj = getPlayer(); if not playerObj then return end
     local building = playerObj:getBuilding()
 
-	-- from SirDoggyJvla: check mask from Susceptible list
-	local gasMask = isWearingGasMask()
-
-	-- from SirDoggyJvla: UI of mask even without Susceptible Trait
-	if not SusceptibleMod.isPlayerSusceptible(playerObj) then
-		maskUI(playerObj,0,gasMask)
-	end
+    local player = getPlayer()
+    local playerModData = player:getModData()
+    if not playerModData["Susceptible_Overhaul"] then
+        playerModData["Susceptible_Overhaul"] = {}
+    end
+    if not playerModData["Susceptible_Overhaul"].InDanger then
+        playerModData["Susceptible_Overhaul"].InDanger = {}
+    end
 
     if building then
-	
         local buildingDef = building:getDef()
         local zCoord = (buildingDef:getFirstRoom() and buildingDef:getFirstRoom():getZ()) or 0
         local buildingSq = playerObj:getCell():getGridSquare(buildingDef:getX(), buildingDef:getY(), zCoord)
@@ -98,13 +46,14 @@ local function everyMinute()
                 end
             end
         elseif modData and modData.isSporeZone then
-			-- if no mask, then get sick
+            -- from SirDoggyJvla: check mask from Susceptible list
+	        local gasMask = Susceptible_Overhaul.isWearingGasMask() or Susceptible_Overhaul.isWearingHazmat()
+
+            -- if no mask, then get sick
             if gasMask == false then
 				-- from SirDoggyJvla: set mask UI to danger
-				if not SusceptibleMod.isPlayerSusceptible(playerObj) then
-					maskUI(playerObj,2,gasMask)
-				end
-				
+				playerModData["Susceptible_Overhaul"].InDanger.CSZ = true
+
                 local bodyDamage = playerObj:getBodyDamage()
 
                 local currSickness = bodyDamage:getFoodSicknessLevel()
@@ -131,44 +80,27 @@ local function everyMinute()
                         bodyDamage:setInfected(true)
                     end
                 end
-			
+
 			-- from SirDoggyJvla: if gasMask is on and in sporeZone then damage mask
 			elseif gasMask == true then
-				-- from SirDoggyJvla: set mask UI to no danger
-				if not SusceptibleMod.isPlayerSusceptible(playerObj) then
-					maskUI(playerObj,0,gasMask)
-				end
-				
-				-- retrieve mask item type and info
-				local item, mask = SusceptibleMod.getEquippedMaskItemAndData(getPlayer());
-				
-				-- get item data, notably durabilityMax
-				local data = SusUtil.getItemModData(item);
-				
-				-- maskDamageRate / time to drain = durability loss per minute (bcs function everyMinute)
-				local maskDamageRate = data.durabilityMax / 60;
+                playerModData["Susceptible_Overhaul"].InDanger.CSZ = nil
 
-				-- calculate durability loss depending on mask type, priotizing oxygen tanks
-				if mask.repairType == SusceptibleRepairTypes.OXYGEN and SandboxVars.SporeZones.DrainageOxyTank then
-					local condition = item:getCondition() / item:getConditionMax() + 0.1;
-					condition = condition * condition;
-					if condition > 1 then
-						condition = 1;
-					end
-	
-					local conditionMult = 1.0 / condition; -- You're leaking :)
-					SusceptibleMod.damageMask(item, mask, conditionMult * maskDamageRate / SandboxVars.SporeZones.TimetoDrainOxyTank ); -- Constant drain rate for oxygen based protection
-				elseif mask.repairType == SusceptibleRepairTypes.FILTER and SandboxVars.SporeZones.DrainageFilter then
-					local damage = maskDamageRate / SandboxVars.SporeZones.TimetoDrainFilter;
-					SusceptibleMod.damageMask(item, mask, damage);
-				end
+				Susceptible_Overhaul.damageMask(
+                    SandboxVars.SporeZones.DrainageOxyTank,
+                    SandboxVars.SporeZones.DrainageFilter,
+                    SandboxVars.SporeZones.TimetoDrainOxyTank,
+                    SandboxVars.SporeZones.TimetoDrainFilter
+                )
 			end
-			
+
 			-- draw spore zone UI
             BB_Spore_UI.drawSporeCanvas = true
+        else
+            playerModData["Susceptible_Overhaul"].InDanger.CSZ = nil
         end
 
     elseif BB_Spore_UI.drawSporeCanvas == true then
+        playerModData["Susceptible_Overhaul"].InDanger.CSZ = nil
 
         BB_Spore_UI.drawSporeCanvas = false
         local bodyDamage = playerObj:getBodyDamage(); if not bodyDamage then return end
@@ -180,9 +112,9 @@ local function everyMinute()
         end
 
         playerObj:getModData().cordycepsInfectionTimer = nil
+    else
+        playerModData["Susceptible_Overhaul"].InDanger.CSZ = nil
     end
-	
-	
 end
 
 local updateZoneChance = function()
@@ -255,4 +187,5 @@ local everyHour = function()
 end
 
 Events.OnGameStart.Add(onGameStart)
+
 Events.EveryHours.Add(everyHour)

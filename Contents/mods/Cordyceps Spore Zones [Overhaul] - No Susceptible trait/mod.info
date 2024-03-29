@@ -1,9 +1,0 @@
-id=CordycepsSporeZoneSusceptiblePatchNoTrait
-name=Cordyceps Spore Zone - Overhaul - No Susceptible trait
-description=Removes the Susceptible trait from being taken by players.
-poster=poster.png
-authors=SirDoggyJvla
-icon=icon.png
-tags=Build 41
-versionMin=41.0
-require=CordycepsSporeZoneSusceptiblePatch
