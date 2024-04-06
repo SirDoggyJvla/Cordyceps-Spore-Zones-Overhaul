@@ -25,6 +25,9 @@ local function everyMinute()
     if not playerModData["Susceptible_Overhaul"].InDanger then
         playerModData["Susceptible_Overhaul"].InDanger = {}
     end
+    if not playerModData["Susceptible_Overhaul"].DamageProtection then
+        playerModData["Susceptible_Overhaul"].DamageProtection = {}
+    end
 
     if building then
         local buildingDef = building:getDef()
@@ -53,6 +56,7 @@ local function everyMinute()
             if gasMask == false then
 				-- from SirDoggyJvla: set mask UI to danger
 				playerModData["Susceptible_Overhaul"].InDanger.CSZ = true
+                playerModData["Susceptible_Overhaul"].DamageProtection.CSZ = nil
 
                 local bodyDamage = playerObj:getBodyDamage()
 
@@ -84,23 +88,24 @@ local function everyMinute()
 			-- from SirDoggyJvla: if gasMask is on and in sporeZone then damage mask
 			elseif gasMask == true then
                 playerModData["Susceptible_Overhaul"].InDanger.CSZ = nil
-
-				Susceptible_Overhaul.damageMask(
-                    SandboxVars.SporeZones.DrainageOxyTank,
-                    SandboxVars.SporeZones.DrainageFilter,
-                    SandboxVars.SporeZones.TimetoDrainOxyTank,
-                    SandboxVars.SporeZones.TimetoDrainFilter
-                )
+                playerModData["Susceptible_Overhaul"].DamageProtection.CSZ = {
+                    drain_oxygen = SandboxVars.SporeZones.DrainageOxyTank,
+                    drain_filter = SandboxVars.SporeZones.DrainageFilter,
+                    oxygenTank_drainage = SandboxVars.SporeZones.TimetoDrainOxyTank,
+                    filter_drainage = SandboxVars.SporeZones.TimetoDrainFilter,
+                }
 			end
 
 			-- draw spore zone UI
             BB_Spore_UI.drawSporeCanvas = true
         else
             playerModData["Susceptible_Overhaul"].InDanger.CSZ = nil
+            playerModData["Susceptible_Overhaul"].DamageProtection.CSZ = nil
         end
 
     elseif BB_Spore_UI.drawSporeCanvas == true then
         playerModData["Susceptible_Overhaul"].InDanger.CSZ = nil
+        playerModData["Susceptible_Overhaul"].DamageProtection.CSZ = nil
 
         BB_Spore_UI.drawSporeCanvas = false
         local bodyDamage = playerObj:getBodyDamage(); if not bodyDamage then return end
@@ -114,6 +119,7 @@ local function everyMinute()
         playerObj:getModData().cordycepsInfectionTimer = nil
     else
         playerModData["Susceptible_Overhaul"].InDanger.CSZ = nil
+        playerModData["Susceptible_Overhaul"].DamageProtection.CSZ = nil
     end
 end
 

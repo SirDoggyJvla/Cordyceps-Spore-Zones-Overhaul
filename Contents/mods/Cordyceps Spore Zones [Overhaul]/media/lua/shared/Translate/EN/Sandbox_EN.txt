@@ -1,13 +1,13 @@
 Sandbox_EN = {
-    Sandbox_SporeZones_DrainageFilter = "[Overhaul] Damage to filter protections",
+    Sandbox_SporeZones_DrainageFilter = "[Cordyceps Spore Zones] Damage to filter protections",
     Sandbox_SporeZones_DrainageFilter_tooltip = "Will spore zones consume the filter of a protection when in it."
 	
-	Sandbox_SporeZones_TimetoDrainFilter = "[Overhaul] Time to destroy a filter [in hours]",
-    Sandbox_SporeZones_TimetoDrainFilter_tooltip = "Time it will take for the spore zone to fully drain a filter. Infected can still drain the durability of filters !"
+	Sandbox_SporeZones_TimetoDrainFilter = "[Cordyceps Spore Zones] Time to destroy a filter [in hours]",
+    Sandbox_SporeZones_TimetoDrainFilter_tooltip = "Time it will take for the spore zone to fully drain a filter."
 	
-	Sandbox_SporeZones_DrainageOxyTank = "[Overhaul] Consumption to oxygen tank's of a protection",
+	Sandbox_SporeZones_DrainageOxyTank = "[Cordyceps Spore Zones] Consumption of the oxygen tank of a protection",
     Sandbox_SporeZones_DrainageOxyTank_tooltip = "Will spore zones consume the oxygen tanks of a protection when in it."
 	
-	Sandbox_SporeZones_TimetoDrainOxyTank = "[Overhaul] Time to consume an oxygen tank [in hours]",
-    Sandbox_SporeZones_TimetoDrainOxyTank_tooltip = "Time it will take for the spore zone to fully drain an oxygen tank. Infected can still drain oxygen tanks !"
+	Sandbox_SporeZones_TimetoDrainOxyTank = "[Cordyceps Spore Zones] Time to consume an oxygen tank [in hours]",
+    Sandbox_SporeZones_TimetoDrainOxyTank_tooltip = "Time it will take for the spore zone to fully drain an oxygen tank."
 }
